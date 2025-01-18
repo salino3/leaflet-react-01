@@ -33,6 +33,27 @@
   }
 }
 
+html,
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+body {
+  height: 100vh;
+  min-width: 100vh;
+}
+
+.appContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+}
+
 .card {
   padding: 2em;
 }

@@ -7,7 +7,7 @@ function App() {
       <h1> React + Leaflet</h1>
       <details open={true}>
         <summary>
-          <strong>Paris</strong>
+          <strong>Salerno</strong>
         </summary>
         <HomePage />
       </details>

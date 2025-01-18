@@ -8,16 +8,16 @@ export const HomePage = () => {
   // markers
   const markers = [
     {
-      geocode: [48.86, 2.3522],
-      popUp: "Hello, I am pop up 1",
+      geocode: [40.6824, 14.759],
+      popUp: "San Matteo`s cathedral",
     },
     {
-      geocode: [48.85, 2.3522],
-      popUp: "Hello, I am pop up 2",
+      geocode: [40.678, 14.7597],
+      popUp: "Piazza della Libertà square",
     },
     {
-      geocode: [48.855, 2.34],
-      popUp: "Hello, I am pop up 3",
+      geocode: [40.6852, 14.7584],
+      popUp: "San Giorgio`s church",
     },
   ];
 
@@ -60,7 +60,8 @@ export const HomePage = () => {
   // {z}/{x}/{y} zoom, horizontal, vertical, y
   https: return (
     <div className="containerHome">
-      <MapContainer center={[48.8566, 2.3522]} zoom={13}>
+      <MapContainer center={[40.6824, 14.759]} zoom={15}>
+        {" "}
         {/* <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -75,9 +76,14 @@ export const HomePage = () => {
           url="https://tiles.stadiamaps.com/tiles/stamen_toner/{z}/{x}/{y}.png"
           maxZoom={20}
         /> */}
-        <TileLayer
+        {/* <TileLayer
           attribution='&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://www.stamen.com/" target="_blank">Stamen Design</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://tiles.stadiamaps.com/tiles/stamen_watercolor/{z}/{x}/{y}.jpg"
+          maxZoom={20}
+        /> */}
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+          url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
           maxZoom={20}
         />
         <MarkerClusterGroup
