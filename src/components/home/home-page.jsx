@@ -42,17 +42,22 @@ export const HomePage = () => {
     return new divIcon({
       // here use 'class'
       html: `<div class="cluster-icon">
-    ${cluster.getChildCount()}
-  </div>`,
+        ${cluster.getChildCount()}
+      </div>`,
+      // html: `<img src="/assets/icons/marker_02.svg" />`,
       className: "custom-marker-cluster",
-      iconSize: new L.Point(33, 33),
-      // it does not work
-      // iconSize: point(33, 33, true),
-      // popupAnchor: new L.Point(0, -10),
+      iconSize: new L.Point(30, 30),
+      //* it does not work
+      //* iconSize: point(33, 33, true),
+      // cluster just on the coordinates
+      iconAnchor: [15, 15],
+      popupAnchor: new L.Point(0, -10),
+      // popupAnchor: [0, -10],
     });
   };
   //
-  //leaflet-extras.github.io/leaflet-providers/preview/
+  // leaflet-extras.github.io/leaflet-providers/preview/
+  // {z}/{x}/{y} zoom, horizontal, vertical, y
   https: return (
     <div className="containerHome">
       <MapContainer center={[48.8566, 2.3522]} zoom={13}>
