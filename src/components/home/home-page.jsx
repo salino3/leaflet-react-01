@@ -51,13 +51,24 @@ export const HomePage = () => {
       // popupAnchor: new L.Point(0, -10),
     });
   };
-
-  return (
+  //
+  //leaflet-extras.github.io/leaflet-providers/preview/
+  https: return (
     <div className="containerHome">
       <MapContainer center={[48.8566, 2.3522]} zoom={13}>
-        <TileLayer
+        {/* <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        /> */}
+        {/* <TileLayer
+          url="https://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="https://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          maxZoom={22}
+        /> */}
+        <TileLayer
+          attribution='&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://www.stamen.com/" target="_blank">Stamen Design</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://tiles.stadiamaps.com/tiles/stamen_toner/{z}/{x}/{y}.png"
+          maxZoom={20}
         />
         <MarkerClusterGroup
           chunkedLoading
