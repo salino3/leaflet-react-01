@@ -11,5 +11,18 @@
   .leaflet-container {
     height: 90vh;
     width: 90vh;
+
+    .cluster-icon {
+      background-color: #ff5a5a;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 12px;
+      font-weight: bold;
+      color: white;
+    }
   }
 }

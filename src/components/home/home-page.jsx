@@ -40,11 +40,14 @@ export const HomePage = () => {
   //
   const createCustomIcon = (cluster) => {
     return new divIcon({
-      html: `<div className="cluster-icon">
+      // here use 'class'
+      html: `<div class="cluster-icon">
     ${cluster.getChildCount()}
   </div>`,
-      // className: "custom-marker-cluster",
+      className: "custom-marker-cluster",
       iconSize: new L.Point(33, 33),
+      // it does not work
+      // iconSize: point(33, 33, true),
       // popupAnchor: new L.Point(0, -10),
     });
   };
