@@ -54,18 +54,37 @@ export const DataRoma = () => {
 
   // Flecha personalizada en formato SVG
   const arrowIcon = new Icon({
-    iconUrl: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-  <path d="M12 2L12 22M12 22L6 16M12 22L18 16" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>`,
-    iconSize: [11, 7], // Ajusta el tamaño de la flecha
-    iconAnchor: [5, 3], // Coloca el ancla en la base de la flecha
+    iconUrl: "/assets/icons/arrow_01.svg",
+    iconSize: [40, 22],
+    iconAnchor: [20, 11],
     popupAnchor: [0, -10],
   });
+
+  const ArrowAngleIcon = ({ rotation = 0 }) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+      style={{ transform: `rotate(${rotation}deg)` }} // Aplica la rotación
+    >
+      <polygon points="5,19 12,12 19,19" fill="currentColor" />
+    </svg>
+  );
+
+  const calculateRotation = (start, end) => {
+    const deltaX = end[1] - start[1]; // longitud
+    const deltaY = end[0] - start[0]; // latitud
+    const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
+    return angle;
+  };
 
   return {
     markers,
     customMarker,
     createCustomIcon,
     arrowIcon,
+    ArrowAngleIcon,
+    calculateRotation,
   };
 };

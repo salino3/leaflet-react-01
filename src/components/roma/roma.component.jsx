@@ -12,7 +12,14 @@ import { DataRoma } from "./data-roma";
 import "./roma.styles.scss";
 
 export const Roma = () => {
-  const { markers, customMarker, createCustomIcon, arrowIcon } = DataRoma();
+  const {
+    markers,
+    customMarker,
+    createCustomIcon,
+    arrowIcon,
+    calculateRotation,
+    ArrowAngleIcon,
+  } = DataRoma();
 
   // Polyline positions for all points except the last connection
   const bluePolylinePositions = markers
