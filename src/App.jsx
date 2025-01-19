@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="appContainer">
       <h1> React + Leaflet</h1>
-      <details name="details" open={true}>
+      <details name="details" open={false}>
         <summary>
           <strong>Salerno</strong>
         </summary>

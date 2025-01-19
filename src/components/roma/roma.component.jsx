@@ -1,4 +1,10 @@
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  Polyline,
+} from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import { Icon, divIcon } from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -41,6 +47,9 @@ export const Roma = () => {
     });
   };
 
+  //
+  const polylinePositions = markers.map((marker) => marker.geocode);
+
   https: return (
     <div className="containerRoma">
       <MapContainer center={[41.8991, 12.4844]} zoom={13}>
@@ -68,6 +77,10 @@ export const Roma = () => {
               </Marker>
             ))}
         </MarkerClusterGroup>
+        <Polyline
+          positions={polylinePositions}
+          pathOptions={{ color: "blue", weight: 4 }}
+        />
       </MapContainer>
     </div>
   );
