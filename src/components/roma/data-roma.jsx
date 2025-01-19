@@ -60,22 +60,59 @@ export const DataRoma = () => {
     popupAnchor: [0, -10],
   });
 
-  const ArrowAngleIcon = ({ rotation = 0 }) => (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      width="24"
-      height="24"
-      style={{ transform: `rotate(${rotation}deg)` }} // Aplica la rotación
-    >
-      <polygon points="5,19 12,12 19,19" fill="currentColor" />
-    </svg>
-  );
+  //     iconUrl: `<svg
+  //   xmlns="http://www.w3.org/2000/svg"
+  //   viewBox="0 0 24 24"
+  //   width="24"
+  //   height="24"
+  //     // style={{ transform: 'rotate(${rotation}deg)' }}
+  // >
+  //   <polygon
+  //     points="5,19 12,12 19,19"
+  //     fill="green"
+  //   />
+  // </svg>`,
+  const arrowIconRotation = (rotation) => {
+    return divIcon({
+      className: "arrow-icon",
+      html: `
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          width="24"
+          height="24"
+          style="transform: rotate(${rotation}deg);"
+        >
+          <polygon points="5,19 12,12 19,19" fill="green" />
+        </svg>
+      `,
+      iconSize: [40, 22],
+      iconAnchor: [20, 11],
+      popupAnchor: [0, -10],
+    });
+  };
 
-  const calculateRotation = (start, end) => {
-    const deltaX = end[1] - start[1]; // longitud
-    const deltaY = end[0] - start[0]; // latitud
-    const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
+  const ArrowAngleIcon = ({ rotation = 0 }) => {
+    return "arrowIcon2(rotation)";
+  };
+
+  // const calculateRotation = (start, end) => {
+  //   const deltaX = end[1] - start[1]; // longitud
+  //   const deltaY = end[0] - start[0]; // latitud
+  //   const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
+  //   return angle;
+  // };
+
+  const calculateRotation = (point1, point2) => {
+    const lat1 = point1[0],
+      lon1 = point1[1];
+    const lat2 = point2[0],
+      lon2 = point2[1];
+
+    const deltaLon = lon2 - lon1;
+    const deltaLat = lat2 - lat1;
+    const angle = Math.atan2(deltaLat, deltaLon) * (180 / Math.PI); // Convierte de radianes a grados
+
     return angle;
   };
 
@@ -86,5 +123,6 @@ export const DataRoma = () => {
     arrowIcon,
     ArrowAngleIcon,
     calculateRotation,
+    arrowIconRotation,
   };
 };
