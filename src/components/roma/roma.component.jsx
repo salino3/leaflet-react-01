@@ -8,52 +8,13 @@ import {
 import MarkerClusterGroup from "react-leaflet-cluster";
 import { Icon, divIcon } from "leaflet";
 import "leaflet/dist/leaflet.css";
+import { DataRoma } from "./data-roma";
 import "./roma.styles.scss";
 
 export const Roma = () => {
-  // markers
-  const markers = [
-    {
-      id: 1,
-      geocode: [41.8902, 12.4922],
-      popUp: "Colosseum",
-    },
-    {
-      id: 2,
-      geocode: [41.8899, 12.4814],
-      popUp: "Vatican City",
-    },
-    {
-      id: 3,
-      geocode: [41.8925, 12.4853],
-      popUp: "Foro romano",
-    },
-    { id: 4, geocode: [41.9009, 12.4833], popUp: "Trevi Fountain" },
-    { id: 5, geocode: [41.8986, 12.4768], popUp: "Pantheon" },
-  ];
-
-  const customMarker = new Icon({
-    iconUrl: "/assets/icons/marker_02.svg",
-    iconSize: [26, 41],
-    iconAnchor: [13, 41],
-    popupAnchor: [0, -41],
-  });
-
-  //
-  const createCustomIcon = (cluster) => {
-    return new divIcon({
-      html: `<div class="cluster-icon">
-        ${cluster.getChildCount()}
-      </div>`,
-      className: "custom-marker-cluster",
-      iconSize: new L.Point(30, 30),
-      iconAnchor: [15, 15],
-      popupAnchor: new L.Point(0, -10),
-    });
-  };
+  const { markers, customMarker, createCustomIcon, arrowIcon } = DataRoma();
 
   // Polyline positions for all points except the last connection
-
   const bluePolylinePositions = markers
     .slice(0, -1)
     .map((marker) => marker.geocode);
@@ -65,7 +26,7 @@ export const Roma = () => {
   ];
   https: return (
     <div className="containerRoma">
-      <MapContainer center={[41.8991, 12.4844]} zoom={14}>
+      <MapContainer center={[41.8991, 12.4844]} zoom={15}>
         <TileLayer
           attribution='&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
@@ -90,6 +51,10 @@ export const Roma = () => {
               </Marker>
             ))}
         </MarkerClusterGroup>
+        <Polyline
+          positions={[markers[0].geocode, markers[1].geocode]}
+          pathOptions={{ color: "blue", weight: 2 }}
+        />
         {/* Blue polyline for general connections */}
         <Polyline
           positions={bluePolylinePositions}
@@ -101,6 +66,11 @@ export const Roma = () => {
           positions={redPolylinePositions}
           pathOptions={{ color: "red", weight: 2 }}
         />
+        <Marker position={markers[1].geocode} icon={arrowIcon}>
+          <Popup>
+            <h3>{markers[1].popUp}</h3>
+          </Popup>
+        </Marker>
       </MapContainer>
     </div>
   );
