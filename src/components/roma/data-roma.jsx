@@ -80,10 +80,6 @@ export const DataRoma = () => {
     });
   };
 
-  const ArrowAngleIcon = ({ rotation = 0 }) => {
-    return "arrowIcon2(rotation)";
-  };
-
   // const calculateRotation = (start, end) => {
   //   const deltaX = end[1] - start[1]; // longitud
   //   const deltaY = end[0] - start[0]; // latitud
@@ -97,11 +93,26 @@ export const DataRoma = () => {
     const lat2 = point2[0],
       lon2 = point2[1];
 
+    // Calcular la diferencia de longitudes y latitudes
     const deltaLon = lon2 - lon1;
     const deltaLat = lat2 - lat1;
-    const angle = Math.atan2(deltaLat, deltaLon) * (180 / Math.PI); // Convierte de radianes a grados
 
-    return angle;
+    // Calcular el ángulo de rotación con atan2 (en radianes)
+    const angle = Math.atan2(deltaLat, deltaLon) * (180 / Math.PI); // Convertir de radianes a grados
+
+    // Ajustar el ángulo de 0 a 360
+    let adjustedAngle = (angle + 360) % 360;
+
+    // Si el ángulo es negativo, se ajusta al rango [0, 360]
+    if (adjustedAngle < 0) {
+      adjustedAngle += 360;
+    }
+
+    // Ajuste adicional para que el ángulo sea en sentido contrario a las agujas del reloj, si es necesario
+    // Deberíamos invertir el ángulo para que el mapa tenga el comportamiento esperado (dirección de derecha a izquierda)
+    adjustedAngle = (adjustedAngle + 90) % 360;
+
+    return adjustedAngle;
   };
 
   return {
@@ -109,7 +120,6 @@ export const DataRoma = () => {
     customMarker,
     createCustomIcon,
     arrowIcon,
-    ArrowAngleIcon,
     calculateRotation,
     arrowIconRotation,
   };
