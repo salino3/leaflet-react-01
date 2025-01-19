@@ -14,17 +14,22 @@ export const Roma = () => {
   // markers
   const markers = [
     {
+      id: 1,
       geocode: [41.8902, 12.4922],
       popUp: "Colosseum",
     },
     {
-      geocode: [41.9009, 12.4833],
-      popUp: "Trevi Fountain",
+      id: 2,
+      geocode: [41.8899, 12.4814],
+      popUp: "Vatican City",
     },
     {
-      geocode: [41.8986, 12.4768],
-      popUp: "Pantheon",
+      id: 3,
+      geocode: [41.8925, 12.4853],
+      popUp: "Foro romano",
     },
+    { id: 4, geocode: [41.9009, 12.4833], popUp: "Trevi Fountain" },
+    { id: 5, geocode: [41.8986, 12.4768], popUp: "Pantheon" },
   ];
 
   const customMarker = new Icon({
@@ -47,12 +52,20 @@ export const Roma = () => {
     });
   };
 
-  //
-  const polylinePositions = markers.map((marker) => marker.geocode);
+  // Polyline positions for all points except the last connection
 
+  const bluePolylinePositions = markers
+    .slice(0, -1)
+    .map((marker) => marker.geocode);
+
+  // Polyline positions for the last connection
+  const redPolylinePositions = [
+    markers[markers.length - 2].geocode,
+    markers[markers.length - 1].geocode,
+  ];
   https: return (
     <div className="containerRoma">
-      <MapContainer center={[41.8991, 12.4844]} zoom={13}>
+      <MapContainer center={[41.8991, 12.4844]} zoom={14}>
         <TileLayer
           attribution='&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
@@ -77,9 +90,16 @@ export const Roma = () => {
               </Marker>
             ))}
         </MarkerClusterGroup>
+        {/* Blue polyline for general connections */}
         <Polyline
-          positions={polylinePositions}
-          pathOptions={{ color: "blue", weight: 4 }}
+          positions={bluePolylinePositions}
+          pathOptions={{ color: "blue", weight: 2 }}
+        />
+
+        {/* Red polyline for the last connection */}
+        <Polyline
+          positions={redPolylinePositions}
+          pathOptions={{ color: "red", weight: 2 }}
         />
       </MapContainer>
     </div>
