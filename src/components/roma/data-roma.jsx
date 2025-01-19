@@ -1,11 +1,3 @@
-import {
-  MapContainer,
-  TileLayer,
-  Marker,
-  Popup,
-  Polyline,
-} from "react-leaflet";
-import MarkerClusterGroup from "react-leaflet-cluster";
 import { Icon, divIcon } from "leaflet";
 import "leaflet/dist/leaflet.css";
 
@@ -14,7 +6,7 @@ export const DataRoma = () => {
   const markers = [
     {
       id: 1,
-      geocode: [41.89021, 12.492231],
+      geocode: [41.89021, 12.492231], // Coordenadas con más decimales
       popUp: "Colosseum",
     },
     {
@@ -52,14 +44,6 @@ export const DataRoma = () => {
     });
   };
 
-  // Flecha personalizada en formato SVG
-  const arrowIcon = new Icon({
-    iconUrl: "/assets/icons/arrow_01.svg",
-    iconSize: [40, 22],
-    iconAnchor: [20, 11],
-    popupAnchor: [0, -10],
-  });
-
   const arrowIconRotation = (rotation) => {
     return divIcon({
       className: "arrow-icon",
@@ -76,7 +60,7 @@ export const DataRoma = () => {
   />
 </svg>`,
       iconSize: [40, 22],
-      iconAnchor: [14, 11],
+      iconAnchor: [18, 11],
       popupAnchor: [0, -10],
     });
   };
@@ -109,7 +93,6 @@ export const DataRoma = () => {
     markers,
     customMarker,
     createCustomIcon,
-    arrowIcon,
     calculateRotation,
     arrowIconRotation,
     calculateMidpoint,
