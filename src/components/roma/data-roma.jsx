@@ -93,6 +93,18 @@ export const DataRoma = () => {
     return Math.atan2(deltaLat, deltaLon) * (180 / Math.PI); // Convertimos de radianes a grados
   };
 
+  const calculateMidpoint = (point1, point2) => {
+    const lat1 = point1[0];
+    const lon1 = point1[1];
+    const lat2 = point2[0];
+    const lon2 = point2[1];
+
+    const latMid = (lat1 + lat2) / 2;
+    const lonMid = (lon1 + lon2) / 2;
+
+    return [latMid, lonMid];
+  };
+
   return {
     markers,
     customMarker,
@@ -100,5 +112,6 @@ export const DataRoma = () => {
     arrowIcon,
     calculateRotation,
     arrowIconRotation,
+    calculateMidpoint,
   };
 };

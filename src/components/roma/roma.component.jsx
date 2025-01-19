@@ -10,6 +10,7 @@ import { Icon, divIcon } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { DataRoma } from "./data-roma";
 import "./roma.styles.scss";
+import React from "react";
 
 export const Roma = () => {
   const {
@@ -19,10 +20,8 @@ export const Roma = () => {
     arrowIcon,
     calculateRotation,
     arrowIconRotation,
+    calculateMidpoint,
   } = DataRoma();
-
-  const rotation1 = calculateRotation(markers[0].geocode, markers[1].geocode);
-  const rotation2 = calculateRotation(markers[1].geocode, markers[2].geocode);
 
   // Polyline positions for all points except the last connection
   const bluePolylinePositions = markers
@@ -48,10 +47,10 @@ export const Roma = () => {
         >
           {markers &&
             markers?.length > 0 &&
-            markers.map((marker) => (
+            markers.map((marker, index) => (
               <Marker
-                position={marker.geocode}
                 key={marker.geocode.join("")}
+                position={marker.geocode}
                 popup={marker.popUp}
                 icon={customMarker}
               >
@@ -76,24 +75,31 @@ export const Roma = () => {
           positions={redPolylinePositions}
           pathOptions={{ color: "red", weight: 2 }}
         />
-        <Marker
-          key={"838383838"}
-          position={markers[1].geocode}
-          icon={arrowIconRotation(rotation1)}
-        >
-          <Popup>
-            <h3>{markers[1].popUp}</h3>
-          </Popup>
-        </Marker>
-        <Marker
-          key={"83838383rrr8"}
-          position={markers[2].geocode}
-          icon={arrowIconRotation(rotation2)}
-        >
-          <Popup>
-            <h3>{markers[2].popUp}</h3>
-          </Popup>
-        </Marker>
+        {markers &&
+          markers?.length > 0 &&
+          markers.map((marker, index) =>
+            index < markers.length - 1 ? (
+              <Marker
+                key={marker.geocode.join("") + "_arrow"}
+                position={calculateMidpoint(
+                  markers[index].geocode,
+                  markers[index + 1].geocode
+                )}
+                icon={arrowIconRotation(
+                  calculateRotation(
+                    markers[index].geocode,
+                    markers[index + 1].geocode
+                  )
+                )}
+              >
+                <Popup>
+                  <h3>
+                    Arrow between {marker.popUp} and {markers[index + 1].popUp}
+                  </h3>
+                </Popup>
+              </Marker>
+            ) : null
+          )}
       </MapContainer>
     </div>
   );
