@@ -22,6 +22,7 @@ export const Roma = () => {
   } = DataRoma();
 
   const rotation1 = calculateRotation(markers[0].geocode, markers[1].geocode);
+  const rotation2 = calculateRotation(markers[1].geocode, markers[2].geocode);
 
   // Polyline positions for all points except the last connection
   const bluePolylinePositions = markers
@@ -82,6 +83,15 @@ export const Roma = () => {
         >
           <Popup>
             <h3>{markers[1].popUp}</h3>
+          </Popup>
+        </Marker>
+        <Marker
+          key={"83838383rrr8"}
+          position={markers[2].geocode}
+          icon={arrowIconRotation(rotation2)}
+        >
+          <Popup>
+            <h3>{markers[2].popUp}</h3>
           </Popup>
         </Marker>
       </MapContainer>

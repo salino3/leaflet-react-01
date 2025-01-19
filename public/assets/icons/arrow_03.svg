@@ -3,8 +3,7 @@
   viewBox="0 0 24 24"
   width="24"
   height="24"
-  style="transform: rotate(180deg)"
->
+ >
   <polygon
     points="5,19 12,5 19,19"
     fill="green"
